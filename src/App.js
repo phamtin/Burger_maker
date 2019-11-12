@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import BurgerBuilder from "containers/BurgerBuilder/BurgerBuilder";
+import Toolbar from "components/navigation/toolbar/Toolbar";
+import SideDrawer from "components/navigation/sideDrawer/SideDrawer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    showDrawer: false
+  };
+
+  showDrawerHandle = () => {
+    this.setState({ showDrawer: true });
+  };
+
+  closeDrawer = () => {
+    this.setState({ showDrawer: false });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Toolbar toggleDrawer={this.showDrawerHandle} />
+        <SideDrawer
+          show={this.state.showDrawer}
+          closeDrawer={this.closeDrawer}
+        />
+        <BurgerBuilder />
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,47 @@
+.NavigationItem {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.NavigationItem a {
+  display: block;
+  height: 100%;
+  padding: 10px;
+  color: rgb(34, 33, 33);
+  font-family: "Segoe UI";
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active {
+  color: dodgerblue;
+}
+
+@media (min-width: 500.1px) {
+  .NavigationItem {
+    display: block;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .NavigationItem a {
+    display: block;
+    height: 100%;
+    padding: 6px 10px;
+    color: white;
+    font-family: "Segoe UI";
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .NavigationItem a:hover,
+  .NavigationItem a:active,
+  .NavigationItem a.active {
+    background-color: rgb(143, 65, 21);
+    border-bottom: 3px solid dodgerblue;
+    transition: 0.3s;
+  }
+}
