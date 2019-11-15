@@ -3,10 +3,6 @@ import React from "react";
 import "./orderSum.css";
 
 class OrderSum extends React.Component {
-  componentDidUpdate() {
-    console.log("up!");
-  }
-
   chosenIngredients = () => {
     return Object.keys(this.props.ingredients).map(ingre => {
       return this.props.ingredients[ingre] !== 0 ? (
