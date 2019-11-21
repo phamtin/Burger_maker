@@ -14,10 +14,8 @@ const style = {
 const NavigaItems = props => {
   return (
     <ul style={style}>
-      <NavigaItem link="/" active>
-        Burger Builder
-      </NavigaItem>
-      <NavigaItem link="/">Checkout</NavigaItem>
+      <NavigaItem link="/">Burger Builder</NavigaItem>
+      <NavigaItem link="/orders">Orders</NavigaItem>
     </ul>
   );
 };

@@ -1,0 +1,18 @@
+.contact-data {
+  width: 100%;
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: 60%;
+  padding: 10px;
+  margin: auto;
+  border-radius: 4px;
+  border: 1px solid rgb(163, 163, 163);
+  outline: none;
+}
+
+input:not(:last-child) {
+  margin-bottom: 9px;
+}
