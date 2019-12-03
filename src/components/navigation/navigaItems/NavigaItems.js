@@ -15,7 +15,12 @@ const NavigaItems = props => {
   return (
     <ul style={style}>
       <NavigaItem link="/">Burger Builder</NavigaItem>
-      <NavigaItem link="/orders">Orders</NavigaItem>
+      {props.isAuth ? <NavigaItem link="/orders">Orders</NavigaItem> : null}
+      {!props.isAuth ? (
+        <NavigaItem link="/auth">Signup/in</NavigaItem>
+      ) : (
+        <NavigaItem link="/logout">Logout</NavigaItem>
+      )}
     </ul>
   );
 };

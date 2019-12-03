@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
+import * as orderAction from "store/actions/index";
 import "./contactData.css";
-import instance from "firebase/axios-order";
 import Button from "components/UI/button/Button";
 import Spinner from "components/UI/spinner/Spinner";
 
-export default class ContactData extends Component {
+class ContactData extends Component {
   state = {
     name: "",
     email: "",
@@ -14,15 +15,14 @@ export default class ContactData extends Component {
       city: "",
       postalCode: ""
     },
-    isLoading: false,
-    redireact: false
+    redirect: false
   };
 
   submitContactData = e => {
     e.preventDefault();
-    this.setState({ isLoading: true });
     const order = {
-      ingredients: this.props.ingredients,
+      userId: this.props.userId,
+      ingredients: this.props.ings,
       price: this.props.price,
       customer: {
         name: "Tin",
@@ -33,26 +33,12 @@ export default class ContactData extends Component {
         email: "tinphamtp@gmail.com"
       }
     };
-    instance
-      .post("/order.json", order)
-      .then(res =>
-        this.setState({
-          isLoading: false,
-          purchasing: false,
-          ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
-          },
-          redireact: true
-        })
-      )
-      .catch(error => this.setState({ isLoading: false, purchasing: false }));
+    this.setState({ redirect: true });
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   handleReDirect = () => {
-    if (this.state.redireact) return <Redirect to="/" />;
+    if (this.state.redirect) return <Redirect to="/" />;
   };
 
   render() {
@@ -67,7 +53,7 @@ export default class ContactData extends Component {
         </Button>
       </form>
     );
-    if (this.state.isLoading) {
+    if (this.props.isLoading) {
       form = <Spinner />;
     }
     return (
@@ -79,3 +65,22 @@ export default class ContactData extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    isLoading: state.order.isLoading,
+    token: state.auth.token,
+    userId: state.auth.idUser
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderBurger: (orderData, token) =>
+      dispatch(orderAction.purchaseStart(orderData, token))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);
