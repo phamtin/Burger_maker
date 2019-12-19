@@ -1,7 +1,7 @@
 import React from "react";
 
 const style = {
-  width: "80%",
+  width: "90%",
   border: "1px solid #eee",
   boxShadow: "0 2px 3px #ccc",
   padding: "10px",
@@ -17,13 +17,13 @@ const span = {
 
 const Order = props => {
   const orders = [];
+
   for (let ingredient in props.ingredients) {
     orders.push({
       name: ingredient,
       amount: props.ingredients[ingredient]
     });
   }
-
   const orderOutput = orders.map((ig, i) => {
     return (
       <span key={ig + i} style={span}>
@@ -36,7 +36,11 @@ const Order = props => {
 
   return (
     <div style={style}>
-      <p>Ingredients: {orderOutput}</p>
+      <p>
+        Ingredients:
+        <br />
+        <br /> {orderOutput}
+      </p>
       <p>
         price: <strong>{parseFloat(props.price).toFixed(2)}</strong>
       </p>

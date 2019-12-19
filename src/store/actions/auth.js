@@ -6,21 +6,18 @@ export const authStart = () => {
     type: actionType.AUTH_START
   };
 };
-
 export const authSuccess = authData => {
   return {
     type: actionType.AUTH_SUCCESS,
     authData: authData
   };
 };
-
 export const authFail = error => {
   return {
     type: actionType.AUTH_FAIL,
     error: error
   };
 };
-
 export const logout = () => {
   localStorage.removeItem("userId");
   localStorage.removeItem("token");
@@ -29,7 +26,6 @@ export const logout = () => {
     type: actionType.AUTH_LOGOUT
   };
 };
-
 export const checkLogout = timeOut => {
   return dispatch => {
     setTimeout(() => {
@@ -37,7 +33,6 @@ export const checkLogout = timeOut => {
     }, timeOut * 1000);
   };
 };
-
 export const auth = (email, password, isSignup) => {
   return dispatch => {
     dispatch(authStart());
@@ -68,14 +63,12 @@ export const auth = (email, password, isSignup) => {
       });
   };
 };
-
 export const setAuthRedirectPath = path => {
   return {
     type: actionType.SET_AUTH_REDIRECT_PATH,
     path: path
   };
 };
-
 export const checkAuthState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
